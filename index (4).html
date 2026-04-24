@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biruni Медицина | Лечение в Турции для граждан Казахстана</title>
+<meta name="description" content="Лечение в Турции по доступным ценам. Официальный партнёр Biruni University Hospital в Стамбуле. Бесплатная консультация на казахском и русском.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1B3A5C;
+  --navy2: #112640;
+  --navy3: #0A1828;
+  --gold: #C9A84C;
+  --gold2: #E8C97A;
+  --gold3: #f0d898;
+  --teal: #2D7A6B;
+  --cream: #F5F0E8;
+  --cream2: #EDE8DF;
+  --white: #FFFFFF;
+  --text: #1a2635;
+  --muted: rgba(255,255,255,0.55);
+  --muted2: rgba(255,255,255,0.35);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--navy3);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ── SCROLL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left {
+  opacity: 0; transform: translateX(-40px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 72px;
+  transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  background: rgba(10,24,40,0.92);
+  backdrop-filter: blur(16px);
+  border-color: rgba(201,168,76,0.15);
+}
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--gold); letter-spacing: 0.06em;
+  display: flex; align-items: center; gap: 10px;
+}
+.logo-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
+  animation: logopulse 2.5s ease-in-out infinite;
+}
+@keyframes logopulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.lang-group { display: flex; gap: 4px; }
+.lang-btn {
+  padding: 5px 14px; border-radius: 30px; font-size: 12px;
+  font-family: 'Outfit', sans-serif; font-weight: 500;
+  cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em;
+  border: 1px solid rgba(201,168,76,0.3); background: transparent; color: var(--gold);
+}
+.lang-btn:hover, .lang-btn.active { background: var(--gold); color: var(--navy3); }
+.nav-cta {
+  padding: 9px 22px; background: var(--gold); color: var(--navy3);
+  border: none; border-radius: 4px; font-family: 'Outfit', sans-serif;
+  font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+.nav-cta:hover { background: var(--gold2); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid; place-items: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  position: relative; overflow: hidden;
+}
+
+/* Sinematik arka plan */
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: #060f1a;
+}
+
+/* Gece gökyüzü gradient */
+.hero-sky {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    #060f1a 0%,
+    #0d1f35 35%,
+    #112640 55%,
+    #1a3550 70%,
+    #1e3d5c 80%,
+    #22456a 88%,
+    #1a3550 100%
+  );
+}
+
+/* Boğaz suyu yansıması */
+.hero-water {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 30%;
+  background: linear-gradient(180deg, #112640 0%, #0a1f38 40%, #061628 100%);
+  overflow: hidden;
+}
+.hero-water::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px, transparent 40px,
+    rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px
+  );
+  animation: waterflow 8s linear infinite;
+}
+.hero-water::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.15), rgba(201,168,76,0.3), rgba(201,168,76,0.15), transparent);
+  animation: goldshimmer 4s ease-in-out infinite alternate;
+}
+@keyframes waterflow { from{background-position: 0 0} to{background-position: 82px 0} }
+@keyframes goldshimmer { from{opacity:0.4} to{opacity:1} }
+
+/* Yıldızlar */
+.hero-stars {
+  position: absolute; inset: 0; top: 0; height: 60%; overflow: hidden;
+}
+.star {
+  position: absolute; border-radius: 50%;
+  background: #fff; animation: twinkle var(--d,3s) ease-in-out infinite var(--delay,0s);
+}
+@keyframes twinkle { 0%,100%{opacity:var(--min,0.2)} 50%{opacity:var(--max,1)} }
+
+/* Ay */
+.hero-moon {
+  position: absolute; top: 12%; right: 15%;
+  width: 48px; height: 48px;
+}
+.moon-glow {
+  position: absolute; inset: -16px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  animation: moonglow 6s ease-in-out infinite alternate;
+}
+@keyframes moonglow { from{transform:scale(1)} to{transform:scale(1.2)} }
+.moon-body {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #f0d898, #c9a84c);
+  box-shadow: 0 0 20px rgba(201,168,76,0.3);
+}
+
+/* SVG İstanbul Silüeti */
+.hero-silhouette {
+  position: absolute; bottom: 28%; left: 0; right: 0;
+  display: flex; justify-content: center; align-items: flex-end;
+  pointer-events: none;
+}
+.hero-silhouette svg {
+  width: 100%; max-width: 1400px; height: auto;
+  opacity: 0;
+  animation: silhouettefade 2s 0.5s ease both;
+}
+@keyframes silhouettefade { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* Siluet ışık yansıması suda */
+.hero-reflection {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 28%;
+  display: flex; justify-content: center; align-items: flex-start;
+  pointer-events: none; overflow: hidden;
+}
+.hero-reflection svg {
+  width: 100%; max-width: 1400px; height: auto;
+  opacity: 0.18;
+  transform: scaleY(-0.4) translateY(-40%);
+  filter: blur(2px);
+  animation: reflectionfade 2s 0.8s ease both;
+}
+@keyframes reflectionfade { from{opacity:0} to{opacity:0.18} }
+
+/* Işık huzmeleri — altın renk camiden */
+.hero-light-beam {
+  position: absolute; bottom: 26%; pointer-events: none;
+  width: 2px; background: linear-gradient(to top, rgba(201,168,76,0.4), transparent);
+  transform-origin: bottom center;
+  animation: beampulse 4s ease-in-out infinite alternate;
+}
+@keyframes beampulse { from{opacity:0.3;transform:scaleX(1)} to{opacity:0.7;transform:scaleX(2)} }
+
+/* Uçak (sağdan sola geçiş) */
+.hero-plane {
+  position: absolute; top: 22%; right: -60px;
+  font-size: 18px; pointer-events: none;
+  animation: planefly 18s linear infinite;
+  animation-delay: 3s;
+}
+@keyframes planefly {
+  0%   { right: -60px; top: 22%; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { right: 110%; top: 18%; opacity: 0; }
+}
+
+/* Gradyan overlay — içerik okunabilirliği için */
+.hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(6,15,26,0.3) 0%, transparent 60%),
+    linear-gradient(to bottom, rgba(6,15,26,0.6) 0%, rgba(6,15,26,0.1) 40%, rgba(6,15,26,0.4) 80%, rgba(6,15,26,0.8) 100%);
+}
+
+/* Grid texture */
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 0%, transparent 100%);
+}
+
+/* Floating orbs */
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); pointer-events: none;
+}
+.orb1 {
+  width: 500px; height: 300px;
+  background: rgba(201,168,76,0.05);
+  top: 10%; left: 5%;
+  animation: float1 20s ease-in-out infinite;
+}
+.orb2 {
+  width: 300px; height: 300px;
+  background: rgba(45,122,107,0.06);
+  bottom: 20%; right: 5%;
+  animation: float2 25s ease-in-out infinite;
+}
+@keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,20px)} }
+@keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,-30px)} }
+
+/* Thin horizontal lines */
+.hero-line {
+  position: absolute; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.12), transparent);
+  pointer-events: none;
+}
+
+/* ── VİDEO BÖLÜMÜ ── */
+.video-section {
+  background: #060f1a;
+  padding: 0 24px 80px;
+}
+.video-inner { max-width: 1000px; margin: 0 auto; }
+.video-label {
+  text-align: center; padding: 60px 0 40px;
+}
+.video-label .section-tag { margin-bottom: 12px; }
+.video-label .section-title { margin-bottom: 0; }
+
+/* Yolculuk animasyonu kartları */
+.journey-wrap {
+  position: relative; margin-top: 52px;
+}
+.journey-line {
+  position: absolute; top: 56px; left: 10%; right: 10%; height: 2px;
+  background: linear-gradient(90deg, var(--navy2), var(--gold), var(--teal), var(--gold), var(--navy2));
+  background-size: 200% 100%;
+  animation: journeyline 4s linear infinite;
+}
+@keyframes journeyline { from{background-position:100% 0} to{background-position:0 0} }
+.journey-cards {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 20px;
+  position: relative; z-index: 1;
+}
+.journey-card {
+  text-align: center; padding: 0 12px;
+}
+.journey-icon-wrap {
+  width: 112px; height: 112px; border-radius: 50%;
+  margin: 0 auto 20px;
+  border: 1px solid rgba(201,168,76,0.25);
+  background: rgba(201,168,76,0.04);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; transition: all 0.4s;
+}
+.journey-icon-wrap::before {
+  content: '';
+  position: absolute; inset: -6px; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.1);
+  animation: iconpulse 3s ease-in-out infinite;
+}
+.journey-card:nth-child(1) .journey-icon-wrap::before { animation-delay: 0s; }
+.journey-card:nth-child(2) .journey-icon-wrap::before { animation-delay: 0.75s; }
+.journey-card:nth-child(3) .journey-icon-wrap::before { animation-delay: 1.5s; }
+.journey-card:nth-child(4) .journey-icon-wrap::before { animation-delay: 2.25s; }
+@keyframes iconpulse { 0%,100%{transform:scale(1);opacity:0.3} 50%{transform:scale(1.15);opacity:0.8} }
+.journey-icon-wrap:hover {
+  border-color: rgba(201,168,76,0.6);
+  background: rgba(201,168,76,0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(201,168,76,0.15);
+}
+.journey-svg { width: 48px; height: 48px; }
+.journey-step-num {
+  font-size: 10px; letter-spacing: 0.1em; color: var(--gold);
+  font-weight: 500; margin-bottom: 8px; text-transform: uppercase;
+}
+.journey-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+.journey-card p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* Video placeholder — gerçek video için */
+.video-placeholder {
+  margin-top: 60px; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(201,168,76,0.2);
+  background: linear-gradient(135deg, #0d1f35, #112640);
+  aspect-ratio: 16/9; position: relative;
+  cursor: pointer; transition: border-color 0.3s;
+}
+.video-placeholder:hover { border-color: rgba(201,168,76,0.5); }
+.video-placeholder-bg {
+  position: absolute; inset: 0; overflow: hidden;
+}
+/* Mimari çizgiler — hastane esintisi */
+.vp-line {
+  position: absolute; background: rgba(201,168,76,0.06);
+}
+.vp-line-h { height: 1px; left: 0; right: 0; }
+.vp-line-v { width: 1px; top: 0; bottom: 0; }
+
+.video-placeholder-content {
+  position: absolute; inset: 0; display: flex;
+  flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+}
+.play-btn {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: rgba(201,168,76,0.15);
+  border: 2px solid rgba(201,168,76,0.5);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s; position: relative;
+}
+.play-btn::before {
+  content: '';
+  position: absolute; inset: -8px; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.2);
+  animation: iconpulse 2.5s ease-in-out infinite;
+}
+.video-placeholder:hover .play-btn {
+  background: rgba(201,168,76,0.3);
+  border-color: var(--gold);
+  box-shadow: 0 0 40px rgba(201,168,76,0.3);
+}
+.play-triangle {
+  width: 0; height: 0;
+  border-top: 14px solid transparent;
+  border-bottom: 14px solid transparent;
+  border-left: 22px solid var(--gold);
+  margin-left: 4px;
+}
+.video-placeholder-text {
+  text-align: center;
+}
+.video-placeholder-text h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 500; color: var(--white); margin-bottom: 8px;
+}
+.video-placeholder-text p { font-size: 13px; color: var(--muted); }
+
+/* Video gelince bu class'ı kaldır, iframe ekle */
+.video-real { display: none; }
+.video-real.active { display: block; }
+.video-real iframe {
+  width: 100%; aspect-ratio: 16/9;
+  border: none; border-radius: 16px;
+}
+
+.hero-inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 18px; margin-bottom: 40px;
+  border: 1px solid rgba(201,168,76,0.35); border-radius: 30px;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); font-weight: 500;
+  animation: fadeup 1s 0.1s both;
+}
+.badge-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+  animation: logopulse 2s infinite;
+}
+
+@keyframes fadeup {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 8vw, 92px);
+  font-weight: 500; line-height: 1.0; margin-bottom: 28px;
+  animation: fadeup 1s 0.2s both;
+}
+.hero h1 em {
+  color: var(--gold); font-style: italic; display: block;
+}
+
+.hero-sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--muted); line-height: 1.75; max-width: 560px; margin: 0 auto 52px;
+  font-weight: 300;
+  animation: fadeup 1s 0.3s both;
+}
+
+.hero-actions {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  animation: fadeup 1s 0.4s both;
+}
+.btn-gold {
+  padding: 16px 38px; background: var(--gold); color: var(--navy3);
+  border: none; border-radius: 4px; font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.25s;
+  letter-spacing: 0.02em;
+}
+.btn-gold:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.25); }
+.btn-ghost {
+  padding: 16px 38px; background: transparent;
+  border: 1px solid rgba(255,255,255,0.25); color: var(--white);
+  border-radius: 4px; font-family: 'Outfit', sans-serif;
+  font-size: 15px; cursor: pointer; transition: all 0.25s;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* Hero stats */
+.hero-stats {
+  display: flex; gap: 0; margin-top: 80px; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;
+  overflow: hidden; background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(8px);
+  animation: fadeup 1s 0.5s both;
+}
+.hstat {
+  flex: 1; padding: 24px 20px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.2s;
+}
+.hstat:last-child { border-right: none; }
+.hstat:hover { background: rgba(201,168,76,0.05); }
+.hstat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 600; color: var(--gold);
+  line-height: 1; display: block;
+}
+.hstat-label {
+  font-size: 11px; color: var(--muted2); margin-top: 6px; letter-spacing: 0.06em;
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute; bottom: 32px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-size: 10px; color: var(--muted2); letter-spacing: 0.1em;
+  animation: fadeup 1s 0.8s both;
+}
+.scroll-arrow {
+  width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(201,168,76,0.5), transparent);
+  animation: scrolldown 2s ease-in-out infinite;
+}
+@keyframes scrolldown { 0%,100%{transform:scaleY(1);opacity:0.5} 50%{transform:scaleY(1.3);opacity:1} }
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  background: rgba(201,168,76,0.06);
+  border-top: 1px solid rgba(201,168,76,0.15);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  padding: 20px 40px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 48px; flex-wrap: wrap;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: rgba(255,255,255,0.6);
+}
+.trust-icon { font-size: 16px; }
+.trust-item strong { color: var(--gold); font-weight: 500; }
+
+/* ── SECTIONS ── */
+section { padding: 100px 24px; }
+.inner { max-width: 1100px; margin: 0 auto; }
+.inner-sm { max-width: 760px; margin: 0 auto; }
+.section-tag {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px; font-weight: 500;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 4.5vw, 58px); font-weight: 500; line-height: 1.05;
+  margin-bottom: 20px;
+}
+.section-sub {
+  font-size: 16px; color: var(--muted); line-height: 1.75;
+  font-weight: 300; max-width: 540px;
+}
+
+/* Thin gold divider */
+.gold-rule {
+  width: 48px; height: 2px; background: var(--gold);
+  margin: 20px 0; border-radius: 1px;
+}
+
+/* ── WHY BIRUNI ── */
+.why { background: var(--navy2); }
+.why-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center; margin-top: 60px;
+}
+.why-cards { display: flex; flex-direction: column; gap: 2px; }
+.why-card {
+  display: flex; gap: 20px; padding: 24px;
+  border-left: 2px solid transparent;
+  transition: all 0.3s; cursor: default;
+}
+.why-card:hover {
+  border-left-color: var(--gold);
+  background: rgba(201,168,76,0.04);
+}
+.why-icon-wrap {
+  width: 40px; height: 40px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(201,168,76,0.3); border-radius: 8px;
+  font-size: 18px;
+}
+.why-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.why-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+.why-visual {
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.why-circle {
+  width: 320px; height: 320px; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.2);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  animation: rotatering 30s linear infinite;
+}
+@keyframes rotatering { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+.why-circle-inner {
+  width: 240px; height: 240px; border-radius: 50%;
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.15);
+  display: flex; align-items: center; justify-content: center;
+  animation: rotatering 30s linear infinite reverse;
+}
+.why-center-text {
+  text-align: center;
+  animation: rotatering 30s linear infinite;
+}
+.why-center-text .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 600; color: var(--gold); line-height: 1;
+}
+.why-center-text .lbl { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; }
+
+/* Orbit dots */
+.orbit-dot {
+  position: absolute; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold); transform-origin: 160px 0px;
+}
+.od1 { top: -4px; left: 50%; margin-left: -4px; }
+.od2 { top: 50%; right: -4px; margin-top: -4px; background: var(--teal); }
+.od3 { bottom: -4px; left: 50%; margin-left: -4px; opacity: 0.5; }
+.od4 { top: 50%; left: -4px; margin-top: -4px; background: var(--cream); }
+
+/* ── TREATMENTS ── */
+.treatments { background: var(--navy3); }
+.treat-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 52px;
+}
+.treat-card {
+  padding: 32px 28px;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden;
+}
+.treat-card::before {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold); transform: scaleX(0);
+  transition: transform 0.3s; transform-origin: left;
+}
+.treat-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+.treat-card:hover::before { transform: scaleX(1); }
+.treat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px; font-weight: 400; color: rgba(201,168,76,0.15);
+  line-height: 1; margin-bottom: 16px;
+}
+.treat-card h3 { font-size: 17px; font-weight: 500; margin-bottom: 10px; }
+.treat-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* ── TRUST / GÜVEN MİMARİSİ ── */
+.trust-section { background: var(--navy2); }
+.trust-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 52px;
+}
+.trust-card {
+  padding: 28px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.02);
+  transition: all 0.3s;
+}
+.trust-card:hover {
+  border-color: rgba(201,168,76,0.25);
+  background: rgba(201,168,76,0.03);
+}
+.trust-card-icon {
+  font-size: 24px; margin-bottom: 16px;
+}
+.trust-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+.trust-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.trust-badge {
+  display: inline-block; margin-top: 12px;
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 10px; letter-spacing: 0.08em; font-weight: 500;
+  background: rgba(201,168,76,0.12); color: var(--gold);
+}
+
+/* ── PROCESS ── */
+.process { background: var(--navy3); }
+.process-steps { margin-top: 60px; position: relative; }
+.process-line {
+  position: absolute; left: 28px; top: 40px; bottom: 40px; width: 1px;
+  background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+}
+.process-step {
+  display: flex; gap: 32px; align-items: flex-start;
+  padding: 28px 0; position: relative;
+}
+.step-dot {
+  width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+  border: 1px solid rgba(201,168,76,0.4);
+  background: var(--navy3); display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600; color: var(--gold);
+  position: relative; z-index: 1;
+  transition: all 0.3s;
+}
+.process-step:hover .step-dot {
+  background: var(--gold); color: var(--navy3);
+  box-shadow: 0 0 30px rgba(201,168,76,0.3);
+}
+.step-body { padding-top: 12px; }
+.step-body h3 { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
+.step-body p { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 540px; }
+
+/* ── REGION (Bölge seçici) ── */
+.region-section { background: var(--navy2); }
+.region-tabs {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; margin-top: 40px;
+}
+.rtab {
+  padding: 8px 20px; border-radius: 30px; font-size: 13px; font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.15); color: var(--muted);
+  cursor: pointer; transition: all 0.2s; background: transparent;
+  font-family: 'Outfit', sans-serif;
+}
+.rtab.active, .rtab:hover { background: var(--gold); color: var(--navy3); border-color: var(--gold); }
+.region-content { display: none; }
+.region-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.region-text h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 500; margin-bottom: 16px;
+}
+.region-text p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+.region-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.rpill {
+  padding: 6px 14px; border-radius: 20px; font-size: 12px;
+  border: 1px solid rgba(201,168,76,0.3); color: var(--gold); font-weight: 500;
+}
+.region-msg {
+  padding: 28px; background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;
+  font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.8);
+  font-style: italic;
+}
+.region-msg cite {
+  display: block; margin-top: 16px; font-style: normal;
+  font-size: 12px; color: var(--muted);
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials { background: var(--navy3); }
+.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 52px; }
+.testi-card {
+  padding: 28px;
+  border: 1px solid rgba(255,255,255,0.07); border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  transition: all 0.3s;
+}
+.testi-card:hover { border-color: rgba(201,168,76,0.2); transform: translateY(-3px); }
+.testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+.testi-text { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(201,168,76,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 600; color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+}
+.testi-name { font-size: 14px; font-weight: 500; }
+.testi-city { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ── FORM ── */
+.form-section { background: var(--navy2); }
+.form-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start; margin-top: 60px;
+}
+.form-left { }
+.form-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 46px); font-weight: 500; line-height: 1.1; margin-bottom: 16px;
+}
+.form-left p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 32px; }
+.form-guarantees { display: flex; flex-direction: column; gap: 14px; }
+.fg-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: rgba(255,255,255,0.7); }
+.fg-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(45,122,107,0.25); border: 1px solid rgba(45,122,107,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--teal); flex-shrink: 0;
+}
+
+.form-box {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 40px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.fg {
+  display: flex; flex-direction: column; gap: 7px;
+  margin-bottom: 16px;
+}
+.fg label { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+.fg input, .fg select, .fg textarea {
+  padding: 13px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 6px;
+  color: var(--white); font-family: 'Outfit', sans-serif; font-size: 14px;
+  outline: none; transition: border-color 0.2s, background 0.2s;
+  -webkit-appearance: none;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+  border-color: var(--gold); background: rgba(201,168,76,0.05);
+}
+.fg select option { background: var(--navy2); }
+.fg textarea { resize: vertical; min-height: 90px; }
+.form-submit {
+  width: 100%; margin-top: 8px;
+  padding: 16px; background: var(--gold); color: var(--navy3);
+  border: none; border-radius: 6px; font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 500; cursor: pointer;
+  transition: all 0.25s; letter-spacing: 0.02em;
+}
+.form-submit:hover { background: var(--gold2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.2); }
+.form-note { font-size: 11px; color: var(--muted2); margin-top: 14px; text-align: center; line-height: 1.6; }
+
+.form-success { display: none; text-align: center; padding: 40px 20px; }
+.form-success.show { display: block; }
+.success-check {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(45,122,107,0.2); border: 1px solid rgba(45,122,107,0.4);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px; font-size: 24px;
+}
+.form-success h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; color: var(--gold); margin-bottom: 12px;
+}
+.form-success p { color: var(--muted); font-size: 15px; line-height: 1.7; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy3);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 48px 40px 32px;
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+  margin-bottom: 40px;
+}
+.footer-brand .logo { margin-bottom: 14px; }
+.footer-brand p { font-size: 13px; color: var(--muted2); line-height: 1.7; max-width: 280px; }
+.footer-col h4 { font-size: 12px; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; font-weight: 500; }
+.footer-col a, .footer-col p {
+  display: block; font-size: 13px; color: var(--muted);
+  text-decoration: none; margin-bottom: 10px; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 12px; color: var(--muted2); flex-wrap: wrap; gap: 12px;
+}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float {
+  position: fixed; bottom: 32px; right: 32px; z-index: 300;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.35); cursor: pointer;
+  transition: transform 0.2s; text-decoration: none;
+}
+.wa-float:hover { transform: scale(1.1); }
+.wa-float svg { width: 28px; height: 28px; fill: white; }
+.wa-pulse {
+  position: absolute; inset: -4px; border-radius: 50%;
+  border: 2px solid rgba(37,211,102,0.4);
+  animation: wapulse 2s ease-out infinite;
+}
+@keyframes wapulse { 0%{transform:scale(1);opacity:0.8} 100%{transform:scale(1.5);opacity:0} }
+
+/* ── RESPONSIVE ── */
+@media(max-width: 900px) {
+  nav { padding: 0 20px; }
+  .why-layout, .form-layout { grid-template-columns: 1fr; gap: 40px; }
+  .why-visual { display: none; }
+  .treat-grid { grid-template-columns: repeat(2,1fr); }
+  .trust-grid { grid-template-columns: repeat(2,1fr); }
+  .testi-grid { grid-template-columns: 1fr; }
+  .region-content.active { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  .hero-stats { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-box { padding: 24px 20px; }
+  .trust-bar { gap: 20px; }
+}
+@media(max-width: 600px) {
+  .treat-grid { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">
+    <span class="logo-dot"></span>
+    <span class="t" data-ru="БИРУНИ МЕДИЦИНА" data-kz="БИРУНИ МЕДИЦИНА">БИРУНИ МЕДИЦИНА</span>
+  </div>
+  <div class="nav-right">
+    <div class="lang-group">
+      <button class="lang-btn active" onclick="setLang('ru')">РУ</button>
+      <button class="lang-btn" onclick="setLang('kz')">ҚАЗ</button>
+      <button class="lang-btn" onclick="setLang('tr')">TR</button>
+    </div>
+    <button class="nav-cta" onclick="scrollToForm()"
+      data-ru="Консультация" data-kz="Кеңес алу" data-tr="Danışmanlık">Консультация</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-sky"></div>
+
+    <!-- Yıldızlar -->
+    <div class="hero-stars" id="stars"></div>
+
+    <!-- Ay -->
+    <div class="hero-moon">
+      <div class="moon-glow"></div>
+      <div class="moon-body"></div>
+    </div>
+
+    <!-- Uçak -->
+    <div class="hero-plane">✈</div>
+
+    <!-- İstanbul Silüeti SVG -->
+    <div class="hero-silhouette">
+      <svg viewBox="0 0 1400 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+        <!-- Camiler, minareler, köprü, binalar -->
+        <!-- Arka plan binaları (açık lacivert) -->
+        <g fill="#1a3550" opacity="0.6">
+          <rect x="0" y="180" width="60" height="140"/>
+          <rect x="65" y="200" width="40" height="120"/>
+          <rect x="110" y="160" width="80" height="160"/>
+          <rect x="195" y="190" width="50" height="130"/>
+          <rect x="1260" y="185" width="55" height="135"/>
+          <rect x="1320" y="170" width="80" height="150"/>
+        </g>
+        <!-- Orta plan binalar -->
+        <g fill="#112640">
+          <rect x="0" y="210" width="45" height="110"/>
+          <rect x="50" y="195" width="35" height="125"/>
+          <rect x="1310" y="200" width="45" height="120"/>
+          <rect x="1360" y="185" width="40" height="135"/>
+        </g>
+
+        <!-- Köprü (Boğaz köprüsü) -->
+        <g fill="none" stroke="#1e3d5c" stroke-width="2">
+          <path d="M900 180 Q1000 140 1100 180"/>
+        </g>
+        <g fill="#1a3550">
+          <rect x="890" y="175" width="12" height="145"/>
+          <rect x="1098" y="175" width="12" height="145"/>
+        </g>
+        <path d="M896 320 L896 178 Q1000 128 1104 178 L1104 320" fill="none" stroke="#1e3d5c" stroke-width="1.5"/>
+        <line x1="896" y1="178" x2="1104" y2="178" stroke="#253d55" stroke-width="1"/>
+
+        <!-- Galata Kulesi -->
+        <g fill="#1B3A5C">
+          <rect x="310" y="160" width="28" height="160"/>
+          <rect x="306" y="145" width="36" height="20" rx="2"/>
+          <ellipse cx="324" cy="140" rx="20" ry="10" fill="#1B3A5C"/>
+          <ellipse cx="324" cy="132" rx="14" ry="7" fill="#112640"/>
+          <path d="M318 125 L324 100 L330 125 Z" fill="#C9A84C" opacity="0.8"/>
+        </g>
+
+        <!-- Ayasofya -->
+        <g fill="#1B3A5C">
+          <!-- Ana kubbe -->
+          <rect x="480" y="180" width="100" height="140"/>
+          <ellipse cx="530" cy="178" rx="52" ry="28" fill="#1B3A5C"/>
+          <ellipse cx="530" cy="165" rx="36" ry="18" fill="#112640"/>
+          <ellipse cx="530" cy="155" rx="22" ry="11" fill="#1B3A5C"/>
+          <!-- Yan kubbeler -->
+          <ellipse cx="495" cy="185" rx="20" ry="12" fill="#112640"/>
+          <ellipse cx="565" cy="185" rx="20" ry="12" fill="#112640"/>
+          <!-- Minareler -->
+          <rect x="462" y="160" width="8" height="160" rx="1"/>
+          <rect x="610" y="160" width="8" height="160" rx="1"/>
+          <path d="M462 160 L466 140 L470 160 Z" fill="#C9A84C" opacity="0.9"/>
+          <path d="M610 160 L614 140 L618 160 Z" fill="#C9A84C" opacity="0.9"/>
+          <!-- Şerefe -->
+          <rect x="459" y="172" width="14" height="3" rx="1" fill="#C9A84C" opacity="0.6"/>
+          <rect x="607" y="172" width="14" height="3" rx="1" fill="#C9A84C" opacity="0.6"/>
+        </g>
+        <!-- Ayasofya ışığı -->
+        <ellipse cx="530" cy="154" rx="8" ry="4" fill="#C9A84C" opacity="0.4"/>
+
+        <!-- Sultanahmet (Mavi Cami) -->
+        <g fill="#1e4060">
+          <rect x="660" y="190" width="110" height="130"/>
+          <ellipse cx="715" cy="188" rx="58" ry="30" fill="#1e4060"/>
+          <ellipse cx="715" cy="174" rx="42" ry="20" fill="#162e48"/>
+          <ellipse cx="715" cy="163" rx="28" ry="14" fill="#1e4060"/>
+          <!-- 6 minare (karakteristik özellik) -->
+          <rect x="642" y="158" width="7" height="162" rx="1"/>
+          <rect x="662" y="168" width="7" height="152" rx="1"/>
+          <rect x="791" y="168" width="7" height="152" rx="1"/>
+          <rect x="811" y="158" width="7" height="162" rx="1"/>
+          <rect x="700" y="152" width="6" height="168" rx="1"/>
+          <rect x="724" y="152" width="6" height="168" rx="1"/>
+          <!-- Minare tepeleri -->
+          <path d="M642 158 L645.5 138 L649 158 Z" fill="#C9A84C" opacity="0.9"/>
+          <path d="M662 168 L665.5 150 L669 168 Z" fill="#C9A84C" opacity="0.9"/>
+          <path d="M791 168 L794.5 150 L798 168 Z" fill="#C9A84C" opacity="0.9"/>
+          <path d="M811 158 L814.5 138 L818 158 Z" fill="#C9A84C" opacity="0.9"/>
+          <path d="M700 152 L703 133 L706 152 Z" fill="#C9A84C" opacity="0.9"/>
+          <path d="M724 152 L727 133 L730 152 Z" fill="#C9A84C" opacity="0.9"/>
+          <!-- Şerefeler -->
+          <rect x="639" y="168" width="13" height="2.5" rx="1" fill="#C9A84C" opacity="0.5"/>
+          <rect x="659" y="178" width="13" height="2.5" rx="1" fill="#C9A84C" opacity="0.5"/>
+          <rect x="788" y="178" width="13" height="2.5" rx="1" fill="#C9A84C" opacity="0.5"/>
+          <rect x="808" y="168" width="13" height="2.5" rx="1" fill="#C9A84C" opacity="0.5"/>
+        </g>
+
+        <!-- Topkapı Sarayı -->
+        <g fill="#162e48">
+          <rect x="830" y="195" width="55" height="125"/>
+          <rect x="825" y="188" width="65" height="14" rx="2"/>
+          <!-- Saray kulesi -->
+          <rect x="845" y="170" width="15" height="30"/>
+          <path d="M845 170 L852.5 155 L860 170 Z" fill="#C9A84C" opacity="0.7"/>
+          <!-- Pencereler -->
+          <rect x="835" y="205" width="8" height="10" rx="1" fill="#C9A84C" opacity="0.15"/>
+          <rect x="852" y="205" width="8" height="10" rx="1" fill="#C9A84C" opacity="0.15"/>
+          <rect x="869" y="205" width="8" height="10" rx="1" fill="#C9A84C" opacity="0.15"/>
+        </g>
+
+        <!-- Biruni Hastanesi (sağda, modern bina) -->
+        <g fill="#1B3A5C">
+          <rect x="1140" y="155" width="100" height="165"/>
+          <rect x="1145" y="148" width="90" height="14" rx="1"/>
+          <!-- Pencereler ızgarası -->
+          <g fill="#C9A84C" opacity="0.12">
+            <rect x="1150" y="162" width="12" height="10" rx="1"/>
+            <rect x="1168" y="162" width="12" height="10" rx="1"/>
+            <rect x="1186" y="162" width="12" height="10" rx="1"/>
+            <rect x="1204" y="162" width="12" height="10" rx="1"/>
+            <rect x="1222" y="162" width="12" height="10" rx="1"/>
+            <rect x="1150" y="178" width="12" height="10" rx="1"/>
+            <rect x="1168" y="178" width="12" height="10" rx="1"/>
+            <rect x="1186" y="178" width="12" height="10" rx="1"/>
+            <rect x="1204" y="178" width="12" height="10" rx="1"/>
+            <rect x="1222" y="178" width="12" height="10" rx="1"/>
+            <rect x="1150" y="194" width="12" height="10" rx="1"/>
+            <rect x="1168" y="194" width="12" height="10" rx="1"/>
+            <rect x="1186" y="194" width="12" height="10" rx="1"/>
+            <rect x="1204" y="194" width="12" height="10" rx="1"/>
+            <rect x="1222" y="194" width="12" height="10" rx="1"/>
+            <rect x="1150" y="210" width="12" height="10" rx="1"/>
+            <rect x="1168" y="210" width="12" height="10" rx="1"/>
+            <rect x="1186" y="210" width="12" height="10" rx="1"/>
+            <rect x="1204" y="210" width="12" height="10" rx="1"/>
+            <rect x="1222" y="210" width="12" height="10" rx="1"/>
+          </g>
+          <!-- Haç işareti (hastane) -->
+          <rect x="1183" y="228" width="24" height="6" rx="1" fill="#C9A84C" opacity="0.5"/>
+          <rect x="1192" y="220" width="6" height="22" rx="1" fill="#C9A84C" opacity="0.5"/>
+          <!-- Biruni yazısı -->
+          <text x="1190" y="338" text-anchor="middle" font-family="serif" font-size="9" fill="#C9A84C" opacity="0.6" letter-spacing="2">BIRUNI</text>
+        </g>
+
+        <!-- Deniz seviyesi / kıyı şeridi -->
+        <rect x="0" y="318" width="1400" height="4" fill="#112640"/>
+        <rect x="0" y="316" width="1400" height="2" fill="#1a3550" opacity="0.5"/>
+
+        <!-- Altın yansımalar suda (minare tepeleri) -->
+        <g opacity="0.25">
+          <line x1="466" y1="320" x2="466" y2="350" stroke="#C9A84C" stroke-width="1.5"/>
+          <line x1="614" y1="320" x2="614" y2="350" stroke="#C9A84C" stroke-width="1.5"/>
+          <line x1="703" y1="320" x2="703" y2="360" stroke="#C9A84C" stroke-width="1.5"/>
+          <line x1="727" y1="320" x2="727" y2="360" stroke="#C9A84C" stroke-width="1.5"/>
+          <line x1="645.5" y1="320" x2="645.5" y2="345" stroke="#C9A84C" stroke-width="1"/>
+          <line x1="814.5" y1="320" x2="814.5" y2="345" stroke="#C9A84C" stroke-width="1"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Su yüzeyi -->
+    <div class="hero-water"></div>
+
+    <!-- Gradyan overlay -->
+    <div class="hero-overlay"></div>
+    <div class="hero-grid"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+  </div>
+  <div class="hero-line" style="top:30%"></div>
+  <div class="hero-line" style="top:70%"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      <span data-ru="Официальный партнёр · Biruni University Hospital · Стамбул"
+            data-kz="Ресми серіктес · Biruni University Hospital · Стамбул"
+            data-tr="Resmi Ortak · Biruni University Hospital · İstanbul">
+        Официальный партнёр · Biruni University Hospital · Стамбул
+      </span>
+    </div>
+
+    <h1>
+      <span data-ru="Лечение мирового" data-kz="Әлемдік деңгейдегі" data-tr="Türkiye'de Dünya">Лечение мирового</span>
+      <em data-ru="класса — в Турции" data-kz="емдеу — Түркияда" data-tr="Standartlarında Sağlık">класса — в Турции</em>
+    </h1>
+
+    <p class="hero-sub"
+      data-ru="Мы помогаем гражданам Казахстана получить качественную медицинскую помощь в одной из ведущих клиник Стамбула. Ваш консультант говорит на казахском и русском."
+      data-kz="Біз Қазақстан азаматтарына Стамбулдың жетекші клиникаларының бірінде сапалы медициналық көмек алуға жәрдем береміз. Кеңесшіңіз қазақша және орысша сөйлейді."
+      data-tr="Kazakistan vatandaşlarının İstanbul'un önde gelen kliniklerinden birinde kaliteli sağlık hizmeti almasına yardımcı oluyoruz. Danışmanınız Kazakça ve Rusça konuşur.">
+      Мы помогаем гражданам Казахстана получить качественную медицинскую помощь в одной из ведущих клиник Стамбула. Ваш консультант говорит на казахском и русском.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-gold" onclick="scrollToForm()"
+        data-ru="Бесплатная консультация" data-kz="Тегін кеңес алу" data-tr="Ücretsiz Danışmanlık">
+        Бесплатная консультация
+      </button>
+      <button class="btn-ghost" onclick="document.getElementById('process').scrollIntoView({behavior:'smooth'})"
+        data-ru="Как это работает" data-kz="Қалай жұмыс істейді" data-tr="Nasıl Çalışır">
+        Как это работает
+      </button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hstat">
+        <span class="hstat-num" data-count="2000">0</span>
+        <span class="hstat-label" data-ru="УСПЕШНЫХ СЛУЧАЕВ" data-kz="СӘТТІ ЖАҒДАЙЛАР" data-tr="BAŞARILI VAKA">УСПЕШНЫХ СЛУЧАЕВ</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-num">JCI</span>
+        <span class="hstat-label" data-ru="АККРЕДИТАЦИЯ" data-kz="АККРЕДИТАЦИЯ" data-tr="AKREDİTASYON">АККРЕДИТАЦИЯ</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-num" data-count="70">0</span>
+        <span class="hstat-label" data-ru="% ЭКОНОМИИ VS ЕВРОПА" data-kz="% ЕУРОПАДАН ҮНЕМДЕУ" data-tr="% AVRUPA'DAN TASARRUF">% ЭКОНОМИИ VS ЕВРОПА</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-num">24/7</span>
+        <span class="hstat-label" data-ru="ПОДДЕРЖКА НА КАЗАХСКОМ" data-kz="ҚАЗАҚ ТІЛІНДЕГІ ҚОЛДАУ" data-tr="KAZAKÇA DESTEK">ПОДДЕРЖКА НА КАЗАХСКОМ</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <span class="trust-icon">🏥</span>
+    <span data-ru="<strong>Biruni</strong> University Hospital" data-kz="<strong>Biruni</strong> University Hospital" data-tr="<strong>Biruni</strong> University Hospital"><strong>Biruni</strong> University Hospital</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">✈️</span>
+    <span data-ru="Трансфер и проживание <strong>включены</strong>" data-kz="Тасымалдау және тұру <strong>қосылған</strong>" data-tr="Transfer ve konaklama <strong>dahil</strong>">Трансфер и проживание <strong>включены</strong></span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">🕌</span>
+    <span data-ru="Турция — <strong>мусульманская страна</strong>" data-kz="Түркия — <strong>мұсылман ел</strong>" data-tr="Türkiye — <strong>Müslüman ülke</strong>">Турция — <strong>мусульманская страна</strong></span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-icon">💬</span>
+    <span data-ru="Консультация на <strong>казахском</strong>" data-kz="<strong>Қазақ</strong> тілінде кеңес" data-tr="<strong>Kazakça</strong> danışmanlık">Консультация на <strong>казахском</strong></span>
+  </div>
+</div>
+
+<!-- VİDEO & HASTA YOLCULUĞU -->
+<section class="video-section">
+  <div class="video-inner">
+    <div class="video-label reveal">
+      <div class="section-tag" data-ru="Ваш путь к здоровью" data-kz="Денсаулыққа апаратын жолыңыз">Ваш путь к здоровью</div>
+      <div class="section-title" data-ru="От первого звонка<br>до возвращения домой" data-kz="Алғашқы қоңыраудан<br>үйге оралғанға дейін">От первого звонка<br>до возвращения домой</div>
+    </div>
+
+    <!-- Yolculuk adımları animasyonu -->
+    <div class="journey-wrap reveal">
+      <div class="journey-line"></div>
+      <div class="journey-cards">
+
+        <div class="journey-card">
+          <div class="journey-icon-wrap">
+            <svg class="journey-svg" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="18" r="9" stroke="#C9A84C" stroke-width="1.5"/>
+              <path d="M10 42c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="24" cy="18" r="4" fill="#C9A84C" opacity="0.3"/>
+            </svg>
+          </div>
+          <div class="journey-step-num" data-ru="ШАГ 01" data-kz="ҚАДАМ 01">ШАГ 01</div>
+          <h3 data-ru="Консультация" data-kz="Кеңес алу">Консультация</h3>
+          <p data-ru="Вы пишете или звоните. Мы отвечаем на казахском в течение нескольких часов." data-kz="Жазасыз немесе қоңырау шаласыз. Бірнеше сағат ішінде қазақша жауаптаймыз.">Вы пишете или звоните. Мы отвечаем на казахском в течение нескольких часов.</p>
+        </div>
+
+        <div class="journey-card">
+          <div class="journey-icon-wrap">
+            <svg class="journey-svg" viewBox="0 0 48 48" fill="none">
+              <path d="M8 16h32M8 24h20M8 32h14" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+              <rect x="6" y="8" width="36" height="32" rx="4" stroke="#C9A84C" stroke-width="1.5"/>
+              <circle cx="38" cy="36" r="7" fill="#0A1828" stroke="#C9A84C" stroke-width="1.5"/>
+              <path d="M35 36l2 2 4-4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="journey-step-num" data-ru="ШАГ 02" data-kz="ҚАДАМ 02">ШАГ 02</div>
+          <h3 data-ru="Медоценка" data-kz="Медбағалау">Медоценка</h3>
+          <p data-ru="Врач Biruni изучает ваши документы и готовит персональный план лечения." data-kz="Biruni дәрігері құжаттарыңызды зерттеп, жеке емдеу жоспарын дайындайды.">Врач Biruni изучает ваши документы и готовит персональный план лечения.</p>
+        </div>
+
+        <div class="journey-card">
+          <div class="journey-icon-wrap">
+            <svg class="journey-svg" viewBox="0 0 48 48" fill="none">
+              <path d="M6 36 L24 12 L42 36" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18 36V24h12v12" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="38" cy="14" r="6" stroke="#2D7A6B" stroke-width="1.5"/>
+              <path d="M38 11v3l2 2" stroke="#2D7A6B" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M6 42h36" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+            </svg>
+          </div>
+          <div class="journey-step-num" data-ru="ШАГ 03" data-kz="ҚАДАМ 03">ШАГ 03</div>
+          <h3 data-ru="Стамбул" data-kz="Стамбул">Стамбул</h3>
+          <p data-ru="Встреча в аэропорту, отель, переводчик. Вы в надёжных руках с первой минуты." data-kz="Әуежайда қарсы алу, қонақүй, аудармашы. Бірінші минуттан бастап сенімді қолдасыз.">Встреча в аэропорту, отель, переводчик. Вы в надёжных руках с первой минуты.</p>
+        </div>
+
+        <div class="journey-card">
+          <div class="journey-icon-wrap">
+            <svg class="journey-svg" viewBox="0 0 48 48" fill="none">
+              <path d="M24 6 C14 6 6 14 6 24 C6 34 14 42 24 42 C34 42 42 34 42 24 C42 14 34 6 24 6Z" stroke="#C9A84C" stroke-width="1.5"/>
+              <path d="M16 24l6 6 10-12" stroke="#2D7A6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M24 6v4M24 38v4M6 24h4M38 24h4" stroke="#C9A84C" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+            </svg>
+          </div>
+          <div class="journey-step-num" data-ru="ШАГ 04" data-kz="ҚАДАМ 04">ШАГ 04</div>
+          <h3 data-ru="Домой здоровым" data-kz="Сау үйге">Домой здоровым</h3>
+          <p data-ru="После лечения возвращаетесь домой. Мы на связи ещё 6 месяцев для контроля." data-kz="Емделіп үйге ораласыз. Бақылау үшін тағы 6 ай байланыстамыз.">После лечения возвращаетесь домой. Мы на связи ещё 6 месяцев для контроля.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Video placeholder — gerçek video linkini buraya eklersin -->
+    <div class="video-placeholder reveal" id="videoBox" onclick="openVideo()">
+      <div class="video-placeholder-bg">
+        <div class="vp-line vp-line-h" style="top:33%"></div>
+        <div class="vp-line vp-line-h" style="top:66%"></div>
+        <div class="vp-line vp-line-v" style="left:25%"></div>
+        <div class="vp-line vp-line-v" style="left:50%"></div>
+        <div class="vp-line vp-line-v" style="left:75%"></div>
+      </div>
+      <div class="video-placeholder-content">
+        <div class="play-btn">
+          <div class="play-triangle"></div>
+        </div>
+        <div class="video-placeholder-text">
+          <h3 data-ru="Biruni University Hospital" data-kz="Biruni University Hospital">Biruni University Hospital</h3>
+          <p data-ru="Видео скоро появится · Стамбул, Турция" data-kz="Бейне жақында шығады · Стамбул, Түркия">Видео скоро появится · Стамбул, Турция</p>
+        </div>
+      </div>
+    </div>
+    <!-- Gerçek video iframe — video hazır olunca bu satırı aktifleştir: -->
+    <!-- <div class="video-real active"><iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=0&rel=0" allowfullscreen></iframe></div> -->
+
+  </div>
+</section>
+
+<!-- WHY BIRUNI -->
+<section class="why" id="why">
+  <div class="inner">
+    <div class="reveal">
+      <div class="section-tag" data-ru="Почему выбирают нас" data-kz="Неліктен бізді таңдайды" data-tr="Neden Bizi Seçiyorlar">Почему выбирают нас</div>
+      <div class="section-title" data-ru="Ваше доверие —<br>наш главный актив" data-kz="Сіздің сенімдеріңіз —<br>біздің басты байлығымыз" data-tr="Güveniniz —<br>en büyük varlığımız">Ваше доверие —<br>наш главный актив</div>
+      <div class="gold-rule"></div>
+      <p class="section-sub"
+        data-ru="Мы понимаем, что решение о лечении за рубежом — серьёзное. Поэтому на каждом шагу рядом с вами."
+        data-kz="Шетелде емделу туралы шешім — маңызды қадам екенін біз түсінеміз. Сондықтан әр қадамда сіздің жаныңыздамыз."
+        data-tr="Yurt dışında tedavi kararının ne denli önemli olduğunu biliyoruz. Bu yüzden her adımda yanınızdayız.">
+        Мы понимаем, что решение о лечении за рубежом — серьёзное. Поэтому на каждом шагу рядом с вами.
+      </p>
+    </div>
+
+    <div class="why-layout">
+      <div class="why-cards reveal-left">
+        <div class="why-card">
+          <div class="why-icon-wrap">🏅</div>
+          <div>
+            <h3 data-ru="Международная аккредитация JCI" data-kz="JCI халықаралық аккредитациясы">Международная аккредитация JCI</h3>
+            <p data-ru="Biruni Hospital соответствует самым строгим международным стандартам качества и безопасности." data-kz="Biruni Hospital ең қатаң халықаралық сапа және қауіпсіздік стандарттарына сай.">Biruni Hospital соответствует самым строгим международным стандартам качества и безопасности.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon-wrap">🗣️</div>
+          <div>
+            <h3 data-ru="Консультант говорит на казахском" data-kz="Кеңесші қазақша сөйлейді">Консультант говорит на казахском</h3>
+            <p data-ru="Никаких языковых барьеров. Вы общаетесь с нами на родном языке — от первого звонка до возвращения домой." data-kz="Тілдік кедергі жоқ. Алғашқы қоңыраудан бастап үйге оралғанша ана тіліңізде сөйлесесіз.">Никаких языковых барьеров. Вы общаетесь с нами на родном языке — от первого звонка до возвращения домой.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon-wrap">💰</div>
+          <div>
+            <h3 data-ru="До 70% экономии vs Европа" data-kz="Еуропадан 70%-ға дейін үнемдеу">До 70% экономии vs Европа</h3>
+            <p data-ru="То же качество, что в европейских клиниках — по цене, доступной для казахстанских семей." data-kz="Еуропалық клиникалармен бірдей сапа — қазақстандық отбасыларына қолжетімді бағамен.">То же качество, что в европейских клиниках — по цене, доступной для казахстанских семей.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon-wrap">🕌</div>
+          <div>
+            <h3 data-ru="Турция — мусульманская страна" data-kz="Түркия — мұсылман ел">Турция — мусульманская страна</h3>
+            <p data-ru="Халяль питание, комнаты для молитвы, уважение к религиозным традициям — вы будете чувствовать себя как дома." data-kz="Халал тамақ, намаз бөлмелері, діни дәстүрлерге құрмет — үйдегідей сезінесіз.">Халяль питание, комнаты для молитвы, уважение к религиозным традициям — вы будете чувствовать себя как дома.</p>
+          </div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon-wrap">✈️</div>
+          <div>
+            <h3 data-ru="Полная логистика на нас" data-kz="Барлық логистика біздің мойнымызда">Полная логистика на нас</h3>
+            <p data-ru="Трансфер из аэропорта, отель рядом с клиникой, переводчик на приёмах — вы думаете только о здоровье." data-kz="Әуежайдан тасымал, клиника жанындағы қонақүй, қабылдаудағы аудармашы — сіз тек денсаулық туралы ойлайсыз.">Трансфер из аэропорта, отель рядом с клиникой, переводчик на приёмах — вы думаете только о здоровье.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-visual reveal-right">
+        <div class="why-circle">
+          <span class="orbit-dot od1"></span>
+          <span class="orbit-dot od2"></span>
+          <span class="orbit-dot od3"></span>
+          <span class="orbit-dot od4"></span>
+          <div class="why-circle-inner">
+            <div class="why-center-text">
+              <div class="num">15+</div>
+              <div class="lbl" data-ru="ЛЕТ ОПЫТА" data-kz="ЖЫЛ ТӘЖІРИБЕ">ЛЕТ ОПЫТА</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TREATMENTS -->
+<section class="treatments" id="treatments">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-tag" data-ru="Направления" data-kz="Бағыттар">Направления</div>
+      <div class="section-title" data-ru="Что мы лечим" data-kz="Нені емдейміз">Что мы лечим</div>
+    </div>
+    <div class="treat-grid">
+      <div class="treat-card reveal">
+        <div class="treat-num">01</div>
+        <h3 data-ru="Стоматология" data-kz="Стоматология">Стоматология</h3>
+        <p data-ru="Имплантация, виниры, протезирование, отбеливание. Экономия до 60% vs Казахстан." data-kz="Имплантация, виниралар, протездеу, ағарту. Қазақстанмен салыстырғанда 60%-ға дейін үнемдеу.">Имплантация, виниры, протезирование, отбеливание. Экономия до 60% vs Казахстан.</p>
+      </div>
+      <div class="treat-card reveal" style="transition-delay:0.1s">
+        <div class="treat-num">02</div>
+        <h3 data-ru="Пересадка волос" data-kz="Шаш трансплантациясы">Пересадка волос</h3>
+        <p data-ru="Методы FUE и DHI. Турция — мировой лидер по трансплантации волос." data-kz="FUE және DHI әдістері. Түркия — шаш трансплантациясы бойынша әлемдік көшбасшы.">Методы FUE и DHI. Турция — мировой лидер по трансплантации волос.</p>
+      </div>
+      <div class="treat-card reveal" style="transition-delay:0.2s">
+        <div class="treat-num">03</div>
+        <h3 data-ru="Офтальмология" data-kz="Офтальмология">Офтальмология</h3>
+        <p data-ru="Лазерная коррекция зрения, катаракта, глаукома. Новейшее оборудование." data-kz="Лазерлік көру түзету, катаракта, глаукома. Заманауи жабдық.">Лазерная коррекция зрения, катаракта, глаукома. Новейшее оборудование.</p>
+      </div>
+      <div class="treat-card reveal" style="transition-delay:0.1s">
+        <div class="treat-num">04</div>
+        <h3 data-ru="Кардиология" data-kz="Кардиология">Кардиология</h3>
+        <p data-ru="Диагностика, стентирование, шунтирование. Профессора с мировым именем." data-kz="Диагностика, стенттеу, шунттау. Әлемге танымал профессорлар.">Диагностика, стентирование, шунтирование. Профессора с мировым именем.</p>
+      </div>
+      <div class="treat-card reveal" style="transition-delay:0.2s">
+        <div class="treat-num">05</div>
+        <h3 data-ru="Онкология" data-kz="Онкология">Онкология</h3>
+        <p data-ru="Ранняя диагностика, химиотерапия, хирургия. Комплексный онкологический центр." data-kz="Ерте диагностика, химиотерапия, хирургия. Кешенді онкологиялық орталық.">Ранняя диагностика, химиотерапия, хирургия. Комплексный онкологический центр.</p>
+      </div>
+      <div class="treat-card reveal" style="transition-delay:0.3s">
+        <div class="treat-num">06</div>
+        <h3 data-ru="Ортопедия" data-kz="Ортопедия">Ортопедия</h3>
+        <p data-ru="Эндопротезирование суставов, хирургия позвоночника, спортивные травмы." data-kz="Буын эндопротезі, омыртқа хирургиясы, спорттық жарақаттар.">Эндопротезирование суставов, хирургия позвоночника, спортивные травмы.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST / GÜVEN MİMARİSİ -->
+<section class="trust-section">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-tag" data-ru="Ваша безопасность" data-kz="Сіздің қауіпсіздігіңіз">Ваша безопасность</div>
+      <div class="section-title" data-ru="Мы отвечаем<br>за каждый шаг" data-kz="Біз әр қадамға<br>жауап береміз">Мы отвечаем<br>за каждый шаг</div>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card reveal">
+        <div class="trust-card-icon">🏅</div>
+        <h3 data-ru="Реальные документы" data-kz="Нақты құжаттар">Реальные документы</h3>
+        <p data-ru="Акредитация JCI, лицензии Министерства здравоохранения Турции, дипломы и CV всех врачей открыты для проверки." data-kz="JCI аккредитациясы, Түркия ДСМ лицензиялары, барлық дәрігерлердің дипломдары мен CV тексеруге ашық.">Акредитация JCI, лицензии Министерства здравоохранения Турции, дипломы и CV всех врачей открыты для проверки.</p>
+        <span class="trust-badge" data-ru="ВЕРИФИЦИРОВАНО" data-kz="ТЕКСЕРІЛГЕН">ВЕРИФИЦИРОВАНО</span>
+      </div>
+      <div class="trust-card reveal" style="transition-delay:0.1s">
+        <div class="trust-card-icon">🤝</div>
+        <h3 data-ru="Прозрачная цена" data-kz="Мөлдір баға">Прозрачная цена</h3>
+        <p data-ru="Никаких скрытых платежей. Вы получаете детальную смету до поездки. Если цена изменится — мы обязаны уведомить вас заранее." data-kz="Жасырын төлемдер жоқ. Сапарға дейін егжей-тегжейлі смета аласыз. Баға өзгерсе — алдын ала хабарлаймыз.">Никаких скрытых платежей. Вы получаете детальную смету до поездки.</p>
+        <span class="trust-badge" data-ru="ГАРАНТИЯ" data-kz="КЕПІЛДІК">ГАРАНТИЯ</span>
+      </div>
+      <div class="trust-card reveal" style="transition-delay:0.2s">
+        <div class="trust-card-icon">📞</div>
+        <h3 data-ru="Поддержка 24/7" data-kz="24/7 қолдау">Поддержка 24/7</h3>
+        <p data-ru="Ваш личный координатор на связи круглосуточно — в Казахстане и в Турции. Экстренный номер всегда активен." data-kz="Жеке координаторыңыз тәулік бойы байланыста — Қазақстанда да, Түркияда да. Шұғыл нөмір әрдайым жұмыс істейді.">Ваш личный координатор на связи круглосуточно — в Казахстане и в Турции.</p>
+        <span class="trust-badge" data-ru="КРУГЛОСУТОЧНО" data-kz="ТӘУЛІК БОЙЫ">КРУГЛОСУТОЧНО</span>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-card-icon">🔄</div>
+        <h3 data-ru="Постоянное сопровождение" data-kz="Үздіксіз ілеспе">Постоянное сопровождение</h3>
+        <p data-ru="После возвращения домой мы остаёмся на связи 6 месяцев. Контрольная консультация с врачом включена в пакет." data-kz="Үйге оралғаннан кейін 6 ай бойы байланыстамыз. Дәрігермен бақылау кеңесі пакетке кіреді.">После возвращения домой мы остаёмся на связи 6 месяцев.</p>
+        <span class="trust-badge" data-ru="6 МЕСЯЦЕВ" data-kz="6 АЙ">6 МЕСЯЦЕВ</span>
+      </div>
+      <div class="trust-card reveal" style="transition-delay:0.1s">
+        <div class="trust-card-icon">⚕️</div>
+        <h3 data-ru="Ответ на трудный вопрос" data-kz="Қиын сұраққа жауап">Ответ на трудный вопрос</h3>
+        <p data-ru="Если возникнут осложнения — больница несёт полную ответственность. Это прописано в договоре. Мы не уходим от сложных тем." data-kz="Асқынулар туындаса — аурухана толық жауапкершілік алады. Бұл шартта жазылған.">Если возникнут осложнения — больница несёт полную ответственность. Это прописано в договоре.</p>
+        <span class="trust-badge" data-ru="В ДОГОВОРЕ" data-kz="ШАРТТА">В ДОГОВОРЕ</span>
+      </div>
+      <div class="trust-card reveal" style="transition-delay:0.2s">
+        <div class="trust-card-icon">👥</div>
+        <h3 data-ru="Сообщество пациентов" data-kz="Науқастар қоғамдастығы">Сообщество пациентов</h3>
+        <p data-ru="Закрытая группа в WhatsApp для прошедших лечение. Делитесь опытом, задавайте вопросы тем, кто уже прошёл этот путь." data-kz="Емделіп қайтқандарға арналған жабық WhatsApp тобы. Тәжірибемен бөлісіңіз, осы жолдан өткендерге сұрақ қойыңыз.">Закрытая группа в WhatsApp для прошедших лечение.</p>
+        <span class="trust-badge" data-ru="СООБЩЕСТВО" data-kz="ҚОҒАМДАСТЫҚ">СООБЩЕСТВО</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="inner-sm">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-tag" data-ru="Как это работает" data-kz="Қалай жұмыс істейді">Как это работает</div>
+      <div class="section-title" data-ru="5 шагов к<br>вашему здоровью" data-kz="Денсаулығыңызға<br>5 қадам">5 шагов к<br>вашему здоровью</div>
+    </div>
+    <div class="process-steps">
+      <div class="process-line"></div>
+      <div class="process-step reveal">
+        <div class="step-dot">1</div>
+        <div class="step-body">
+          <h3 data-ru="Бесплатная консультация" data-kz="Тегін кеңес алу">Бесплатная консультация</h3>
+          <p data-ru="Оставьте заявку или напишите в WhatsApp. Ваш консультант — носитель казахского языка — свяжется в течение нескольких часов." data-kz="Өтінім қалдырыңыз немесе WhatsApp-қа жазыңыз. Қазақ тілді кеңесшіңіз бірнеше сағат ішінде хабарласады.">Оставьте заявку или напишите в WhatsApp. Ваш консультант — носитель казахского языка — свяжется в течение нескольких часов.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot">2</div>
+        <div class="step-body">
+          <h3 data-ru="Медицинская оценка" data-kz="Медициналық бағалау">Медицинская оценка</h3>
+          <p data-ru="Вы отправляете медицинские документы. Профильный врач Biruni оценивает ваш случай и готовит план лечения." data-kz="Медициналық құжаттарыңызды жібересіз. Biruni мамандандырылған дәрігері жағдайыңызды бағалап, емдеу жоспарын дайындайды.">Вы отправляете медицинские документы. Профильный врач Biruni оценивает ваш случай и готовит план лечения.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot">3</div>
+        <div class="step-body">
+          <h3 data-ru="Прозрачная смета" data-kz="Мөлдір смета">Прозрачная смета</h3>
+          <p data-ru="Вы получаете детальный план лечения с точной стоимостью. Никаких сюрпризов. Можно задавать любые вопросы." data-kz="Нақты құнмен егжей-тегжейлі емдеу жоспарын аласыз. Ешқандай тосын сый жоқ. Кез келген сұрақ қоюға болады.">Вы получаете детальный план лечения с точной стоимостью. Никаких сюрпризов.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot">4</div>
+        <div class="step-body">
+          <h3 data-ru="Приезжаете в Стамбул" data-kz="Стамбулға келесіз">Приезжаете в Стамбул</h3>
+          <p data-ru="Мы встречаем вас в аэропорту, размещаем в отеле. Переводчик сопровождает на всех приёмах у врача." data-kz="Сізді әуежайда қарсы аламыз, қонақүйге орналастырамыз. Аудармашы барлық дәрігер қабылдауларында бірге жүреді.">Мы встречаем вас в аэропорту, размещаем в отеле. Переводчик сопровождает на всех приёмах.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot">5</div>
+        <div class="step-body">
+          <h3 data-ru="Лечение и поддержка" data-kz="Емдеу және қолдау">Лечение и поддержка</h3>
+          <p data-ru="Вы проходите лечение и возвращаетесь домой. Мы остаёмся на связи 6 месяцев после лечения для контроля вашего состояния." data-kz="Емделіп үйге ораласыз. Жағдайыңызды бақылау үшін емдеуден кейін 6 ай байланыста боламыз.">Вы проходите лечение и возвращаетесь домой. Мы остаёмся на связи 6 месяцев.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGION SELECTOR -->
+<section class="region-section">
+  <div class="inner">
+    <div class="reveal">
+      <div class="section-tag" data-ru="Ваш регион" data-kz="Сіздің өңіріңіз">Ваш регион</div>
+      <div class="section-title" data-ru="Мы знаем<br>Казахстан" data-kz="Біз Қазақстанды<br>білеміз">Мы знаем<br>Казахстан</div>
+      <div class="gold-rule"></div>
+      <p class="section-sub" data-ru="Выберите ваш регион — мы адаптируем подход под вас." data-kz="Өз өңіріңізді таңдаңыз — біз тәсілді сізге бейімдейміз.">Выберите ваш регион — мы адаптируем подход под вас.</p>
+    </div>
+    <div class="region-tabs reveal">
+      <button class="rtab active" onclick="showRegion('north')"
+        data-ru="Север — Астана, Алматы" data-kz="Солтүстік — Астана, Алматы">Север — Астана, Алматы</button>
+      <button class="rtab" onclick="showRegion('south')"
+        data-ru="Юг — Шымкент, Туркестан" data-kz="Оңтүстік — Шымкент, Түркістан">Юг — Шымкент, Туркестан</button>
+      <button class="rtab" onclick="showRegion('east')"
+        data-ru="Восток — Усть-Каменогорск" data-kz="Шығыс — Өскемен">Восток — Усть-Каменогорск</button>
+      <button class="rtab" onclick="showRegion('west')"
+        data-ru="Запад — Атырау, Актау" data-kz="Батыс — Атырау, Ақтау">Запад — Атырау, Актау</button>
+    </div>
+
+    <div class="region-content active" id="region-north">
+      <div class="region-text">
+        <h3 data-ru="Аналитический подход" data-kz="Аналитикалық тәсіл">Аналитический подход</h3>
+        <p data-ru="Жители севера Казахстана ценят конкретику: документы, статистику, факты. Мы готовы предоставить полную документацию по больнице, CV врачей и независимые отзывы." data-kz="Қазақстан солтүстігінің тұрғындары нақтылықты бағалайды: құжаттар, статистика, фактілер. Ауруханаға, дәрігерлердің CV-ларына және тәуелсіз пікірлерге толық құжаттама ұсынуға дайынбыз.">Жители севера Казахстана ценят конкретику: документы, статистику, факты. Мы готовы предоставить полную документацию.</p>
+        <div class="region-pills">
+          <span class="rpill" data-ru="JCI акредитация" data-kz="JCI аккредитация">JCI акредитация</span>
+          <span class="rpill" data-ru="CV врачей" data-kz="Дәрігерлер CV">CV врачей</span>
+          <span class="rpill" data-ru="Статистика успеха" data-kz="Сәттілік статистикасы">Статистика успеха</span>
+          <span class="rpill" data-ru="Независимые рейтинги" data-kz="Тәуелсіз рейтингтер">Независимые рейтинги</span>
+        </div>
+      </div>
+      <div class="region-msg" data-ru=""Я изучал несколько вариантов. Biruni показал самую чёткую документацию и прозрачное ценообразование. Это меня убедило." — Астана" data-kz=""Мен бірнеше нұсқаны зерттедім. Biruni ең нақты құжаттама мен мөлдір баға белгілеуді ұсынды. Бұл мені сендірді." — Астана">"Я изучал несколько вариантов. Biruni показал самую чёткую документацию и прозрачное ценообразование. Это меня убедило."<cite>— Данияр К., Астана</cite></div>
+    </div>
+
+    <div class="region-content" id="region-south">
+      <div class="region-text">
+        <h3 data-ru="Семья и доверие" data-kz="Отбасы және сенім">Семья и доверие</h3>
+        <p data-ru="На юге Казахстана решение принимается вместе с семьёй. Мы понимаем это и готовы провести отдельную консультацию для всех, кто участвует в решении. Турция — мусульманская страна, это важно." data-kz="Қазақстан оңтүстігінде шешімді отбасымен бірге қабылдайды. Біз мұны түсінеміз және шешімге қатысатын барлығына жеке кеңес өткізуге дайынбыз.">На юге решение принимается вместе с семьёй. Мы готовы провести консультацию для всей семьи. Турция — мусульманская страна.</p>
+        <div class="region-pills">
+          <span class="rpill" data-ru="Халяль питание" data-kz="Халал тамақ">Халяль питание</span>
+          <span class="rpill" data-ru="Намаз-хана в клинике" data-kz="Клиникада намазхана">Намаз-хана в клинике</span>
+          <span class="rpill" data-ru="Семейная консультация" data-kz="Отбасылық кеңес">Семейная консультация</span>
+          <span class="rpill" data-ru="Казахский консультант" data-kz="Қазақ кеңесші">Казахский консультант</span>
+        </div>
+      </div>
+      <div class="region-msg" data-ru=""Ата-анама ұнады, өйткені Түркия — мұсылман ел. Намаз оқуға орын бар, тамақ халал. Отбасым рұқсат берді, ол маған маңызды болды." — Шымкент" data-kz=""Ата-анама ұнады, өйткені Түркия — мұсылман ел. Намаз оқуға орын бар, тамақ халал. Отбасым рұқсат берді, ол маған маңызды болды." — Шымкент">"Ата-анама ұнады, өйткені Түркия — мұсылман ел. Намаз оқуға орын бар, тамақ халал."<cite>— Айгерим С., Шымкент</cite></div>
+    </div>
+
+    <div class="region-content" id="region-east">
+      <div class="region-text">
+        <h3 data-ru="Факты и реальные истории" data-kz="Фактілер және нақты оқиғалар">Факты и реальные истории</h3>
+        <p data-ru="Жители востока сначала проверяют, потом верят. Мы рады показать реальные видео наших пациентов из Усть-Каменогорска и Семея — без монтажа и прикрас." data-kz="Шығыс тұрғындары алдымен тексеріп, содан кейін сенеді. Өскемен мен Семей науқастарымыздың нақты бейнежазбаларын — өңдеусіз және безендіруссіз — қуана көрсетеміз.">Жители востока сначала проверяют, потом верят. Реальные видео пациентов из вашего региона — без монтажа.</p>
+        <div class="region-pills">
+          <span class="rpill" data-ru="Видео без монтажа" data-kz="Өңдеусіз бейне">Видео без монтажа</span>
+          <span class="rpill" data-ru="Контакты пациентов" data-kz="Науқастар байланысы">Контакты пациентов</span>
+          <span class="rpill" data-ru="Гарантия в договоре" data-kz="Шарттағы кепілдік">Гарантия в договоре</span>
+          <span class="rpill" data-ru="Точная цена заранее" data-kz="Алдын ала нақты баға">Точная цена заранее</span>
+        </div>
+      </div>
+      <div class="region-msg" data-ru=""Я скептик по природе. Но когда мне дали номер телефона реального пациента из Усть-Каменогорска — позвонил, поговорил, убедился." — Семей" data-kz=""Мен табиғатымнан скептикпін. Бірақ маған Өскеменнен нақты науқастың телефон нөмірін берген кезде — қоңырау шалып, сөйлесіп, көзімді жеткіздім." — Семей">"Я скептик по природе. Когда мне дали номер телефона реального пациента из Усть-Каменогорска — позвонил, поговорил, убедился."<cite>— Болат М., Семей</cite></div>
+    </div>
+
+    <div class="region-content" id="region-west">
+      <div class="region-text">
+        <h3 data-ru="Качество без компромиссов" data-kz="Компромиссіз сапа">Качество без компромиссов</h3>
+        <p data-ru="Западный Казахстан знает цену качеству. Для вас — VIP-сопровождение, отдельная палата, приоритетные приёмы и консьерж-сервис на весь период лечения." data-kz="Батыс Қазақстан сапаның бағасын біледі. Сіздер үшін — VIP ілеспе, жеке палата, басымдық берілетін қабылдаулар және емдеу кезеңіне консьерж-сервис.">Западный Казахстан знает цену качеству. VIP-сопровождение, отдельная палата, приоритетные приёмы.</p>
+        <div class="region-pills">
+          <span class="rpill" data-ru="VIP палата" data-kz="VIP палата">VIP палата</span>
+          <span class="rpill" data-ru="Личный координатор" data-kz="Жеке координатор">Личный координатор</span>
+          <span class="rpill" data-ru="Приоритетный приём" data-kz="Басымдық қабылдау">Приоритетный приём</span>
+          <span class="rpill" data-ru="All-inclusive пакет" data-kz="All-inclusive пакет">All-inclusive пакет</span>
+        </div>
+      </div>
+      <div class="region-msg" data-ru=""В Атырау я привык к хорошему сервису. Biruni не разочаровал — всё на уровне: от встречи в аэропорту до выписки." — Атырау" data-kz=""Атырауда мен жақсы сервиске үйреніп қалдым. Biruni көңілімді қалдырмады — барлығы деңгейінде: әуежайдан қарсы алудан бастап шығарылымға дейін." — Атырау">"В Атырау я привык к хорошему сервису. Biruni не разочаровал — всё на уровне: от встречи в аэропорту до выписки."<cite>— Ерлан Т., Атырау</cite></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-tag" data-ru="Отзывы" data-kz="Пікірлер">Отзывы</div>
+      <div class="section-title" data-ru="Они уже вернулись<br>здоровыми" data-kz="Олар сау оралды">Они уже вернулись<br>здоровыми</div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text" data-ru=""Боялась ехать одна. Консультант была на связи в любое время суток — это дало мне уверенность. Зубные импланты получились лучше, чем я ожидала."" data-kz=""Жалғыз баруға қорықтым. Кеңесші тәулігінің кез келген уақытында байланыста болды — бұл маған сенімділік берді. Тіс имплантаттары күткенімнен жақсы шықты."">"Боялась ехать одна. Консультант была на связи в любое время суток — это дало уверенность. Зубные импланты получились лучше, чем ожидала."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">Г</div>
+          <div>
+            <div class="testi-name" data-ru="Гулнар Б." data-kz="Гүлнар Б.">Гулнар Б.</div>
+            <div class="testi-city" data-ru="Алматы · Стоматология" data-kz="Алматы · Стоматология">Алматы · Стоматология</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.1s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text" data-ru=""Ата-анам оңтүстіктен. Олар үшін маңызды болды — Түркия мұсылман ел, халал тамақ, намазхана бар. Операция өте сәтті өтті."" data-kz=""Ата-анам оңтүстіктен. Олар үшін маңызды болды — Түркия мұсылман ел, халал тамақ, намазхана бар."">"Ата-анам оңтүстіктен. Олар үшін маңызды болды — Түркия мұсылман ел, халал тамақ, намазхана бар. Операция өте сәтті өтті."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">А</div>
+          <div>
+            <div class="testi-name" data-ru="Асет Н." data-kz="Асет Н.">Асет Н.</div>
+            <div class="testi-city" data-ru="Шымкент · Кардиология" data-kz="Шымкент · Кардиология">Шымкент · Кардиология</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.2s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text" data-ru=""Я скептик. Мне дали контакты реального пациента из моего города. Позвонил — убедился. Поехал — не пожалел ни разу."" data-kz=""Мен скептикпін. Маған өз қаламнан нақты науқастың байланысын берді. Қоңырау шалдым — көзімді жеткіздім. Бардым — бірде-бір рет өкінбедім."">"Я скептик. Мне дали контакты реального пациента из моего города. Позвонил — убедился. Поехал — не пожалел ни разу."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">Б</div>
+          <div>
+            <div class="testi-name" data-ru="Болат М." data-kz="Болат М.">Болат М.</div>
+            <div class="testi-city" data-ru="Семей · Ортопедия" data-kz="Семей · Ортопедия">Семей · Ортопедия</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="contact">
+  <div class="inner">
+    <div class="form-layout">
+      <div class="form-left reveal-left">
+        <div class="section-tag" data-ru="Начать" data-kz="Бастау">Начать</div>
+        <h2 data-ru="Получите<br>бесплатную оценку<br>вашего случая" data-kz="Жағдайыңыздың<br>тегін бағалауын<br>алыңыз">Получите<br>бесплатную оценку<br>вашего случая</h2>
+        <div class="gold-rule"></div>
+        <p data-ru="Заполните форму — в течение нескольких часов с вами свяжется консультант, говорящий на казахском. Первая консультация бесплатна." data-kz="Форманы толтырыңыз — бірнеше сағат ішінде қазақша сөйлейтін кеңесші сізбен байланысады. Бірінші кеңес тегін.">Заполните форму — в течение нескольких часов с вами свяжется консультант, говорящий на казахском. Первая консультация бесплатна.</p>
+        <div class="form-guarantees">
+          <div class="fg-item"><div class="fg-check">✓</div><span data-ru="Никакого давления — вы ни к чему не обязаны" data-kz="Қысым жоқ — ешнәрсеге міндеттенбейсіз">Никакого давления — вы ни к чему не обязаны</span></div>
+          <div class="fg-item"><div class="fg-check">✓</div><span data-ru="Консультант на казахском языке" data-kz="Қазақ тілді кеңесші">Консультант на казахском языке</span></div>
+          <div class="fg-item"><div class="fg-check">✓</div><span data-ru="Ваши данные строго конфиденциальны" data-kz="Деректеріңіз қатаң құпия">Ваши данные строго конфиденциальны</span></div>
+          <div class="fg-item"><div class="fg-check">✓</div><span data-ru="Ответ в течение нескольких часов" data-kz="Бірнеше сағат ішінде жауап">Ответ в течение нескольких часов</span></div>
+        </div>
+      </div>
+
+      <div class="form-box reveal-right">
+        <form id="lead-form" name="contact" netlify onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="fg">
+              <label data-ru="Ваше имя" data-kz="Сіздің атыңыз">Ваше имя</label>
+              <input type="text" name="name" required placeholder="Айгерим">
+            </div>
+            <div class="fg">
+              <label data-ru="WhatsApp номер" data-kz="WhatsApp нөмірі">WhatsApp номер</label>
+              <input type="tel" name="phone" required placeholder="+7 777 000 0000">
+            </div>
+          </div>
+          <div class="fg">
+            <label data-ru="Направление лечения" data-kz="Емдеу бағыты">Направление лечения</label>
+            <select name="treatment" required>
+              <option value="" data-ru="Выберите..." data-kz="Таңдаңыз...">Выберите...</option>
+              <option value="dental" data-ru="Стоматология" data-kz="Стоматология">Стоматология</option>
+              <option value="hair" data-ru="Пересадка волос" data-kz="Шаш трансплантациясы">Пересадка волос</option>
+              <option value="eye" data-ru="Офтальмология" data-kz="Офтальмология">Офтальмология</option>
+              <option value="cardio" data-ru="Кардиология" data-kz="Кардиология">Кардиология</option>
+              <option value="onco" data-ru="Онкология" data-kz="Онкология">Онкология</option>
+              <option value="ortho" data-ru="Ортопедия" data-kz="Ортопедия">Ортопедия</option>
+              <option value="other" data-ru="Другое" data-kz="Басқа">Другое</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label data-ru="Ваш город" data-kz="Сіздің қалаңыз">Ваш город</label>
+            <select name="city">
+              <option value="" data-ru="Выберите город..." data-kz="Қаланы таңдаңыз...">Выберите город...</option>
+              <option value="astana">Астана</option>
+              <option value="almaty">Алматы</option>
+              <option value="shymkent" data-ru="Шымкент" data-kz="Шымкент">Шымкент</option>
+              <option value="atyrau" data-ru="Атырау" data-kz="Атырау">Атырау</option>
+              <option value="aktau" data-ru="Актау" data-kz="Ақтау">Актау</option>
+              <option value="oskemen" data-ru="Усть-Каменогорск" data-kz="Өскемен">Усть-Каменогорск</option>
+              <option value="other" data-ru="Другой город" data-kz="Басқа қала">Другой город</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label data-ru="Кратко о вашей ситуации (необязательно)" data-kz="Жағдайыңыз туралы қысқаша (міндетті емес)">Кратко о вашей ситуации (необязательно)</label>
+            <textarea name="message" placeholder="..."></textarea>
+          </div>
+          <input type="hidden" name="lang" id="form-lang" value="ru">
+          <button type="submit" class="form-submit"
+            data-ru="Получить бесплатную консультацию →" data-kz="Тегін кеңес алу →">
+            Получить бесплатную консультацию →
+          </button>
+          <p class="form-note" data-ru="Нажимая кнопку, вы соглашаетесь на обработку данных в целях консультации. Ваши данные не передаются третьим лицам." data-kz="Батырманы басу арқылы кеңес мақсатында деректерді өңдеуге келісесіз. Деректеріңіз үшінші тұлғаларға берілмейді.">
+            Нажимая кнопку, вы соглашаетесь на обработку данных в целях консультации.
+          </p>
+        </form>
+        <div class="form-success" id="form-success">
+          <div class="success-check">✓</div>
+          <h3 data-ru="Заявка принята!" data-kz="Өтінім қабылданды!">Заявка принята!</h3>
+          <p data-ru="Наш консультант свяжется с вами в течение нескольких часов. Ожидайте звонка или сообщения в WhatsApp." data-kz="Кеңесшіміз бірнеше сағат ішінде сізбен байланысады. Қоңырауды немесе WhatsApp хабарламасын күтіңіз.">Наш консультант свяжется с вами в течение нескольких часов. Ожидайте звонка или сообщения в WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom:14px">
+        <span class="logo-dot"></span>
+        БИРУНИ МЕДИЦИНА
+      </div>
+      <p data-ru="Официальный партнёр Biruni University Hospital в Казахстане. Качественное лечение в Турции для граждан Казахстана." data-kz="Қазақстандағы Biruni University Hospital ресми серіктесі. Қазақстан азаматтары үшін Түркиядағы сапалы емдеу.">Официальный партнёр Biruni University Hospital в Казахстане. Качественное лечение в Турции для граждан Казахстана.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-ru="Направления" data-kz="Бағыттар">Направления</h4>
+      <a href="#treatments" data-ru="Стоматология" data-kz="Стоматология">Стоматология</a>
+      <a href="#treatments" data-ru="Пересадка волос" data-kz="Шаш трансплантациясы">Пересадка волос</a>
+      <a href="#treatments" data-ru="Офтальмология" data-kz="Офтальмология">Офтальмология</a>
+      <a href="#treatments" data-ru="Кардиология" data-kz="Кардиология">Кардиология</a>
+      <a href="#treatments" data-ru="Онкология" data-kz="Онкология">Онкология</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-ru="Контакты" data-kz="Байланыс">Контакты</h4>
+      <p>WhatsApp: +7 XXX XXX XXXX</p>
+      <p data-ru="Казахстан · Турция" data-kz="Қазақстан · Түркия">Казахстан · Турция</p>
+      <p data-ru="Работаем 24/7" data-kz="24/7 жұмыс істейміз">Работаем 24/7</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-ru="© 2024 Бируни Медицина — Официальный партнёр Biruni University Hospital" data-kz="© 2024 Бируни Медицина — Biruni University Hospital ресми серіктесі">© 2024 Бируни Медицина — Официальный партнёр Biruni University Hospital</span>
+    <span data-ru="Стамбул, Турция" data-kz="Стамбул, Түркия">Стамбул, Türкия</span>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a class="wa-float" href="https://wa.me/905XXXXXXXXX" target="_blank" rel="noopener">
+  <div class="wa-pulse"></div>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ── YILDIZLAR ──
+const starsContainer = document.getElementById('stars');
+if (starsContainer) {
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() < 0.1 ? 2.5 : Math.random() < 0.3 ? 1.5 : 1;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      top:${Math.random() * 90}%;
+      left:${Math.random() * 100}%;
+      --d:${2 + Math.random() * 4}s;
+      --delay:-${Math.random() * 4}s;
+      --min:${0.1 + Math.random() * 0.2};
+      --max:${0.5 + Math.random() * 0.5};
+    `;
+    starsContainer.appendChild(s);
+  }
+}
+
+// ── VIDEO AÇ ──
+function openVideo() {
+  // Video linki hazır olunca buraya YouTube embed URL'ini yaz
+  // Örnek: const videoUrl = 'https://www.youtube.com/embed/VIDEO_ID?autoplay=1';
+  // Şimdilik WhatsApp'a yönlendir
+  window.open('https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Biruni%20Hastanesi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum', '_blank');
+}
+
+// ── NAV SCROLL ──
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), 0);
+    }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => revealObs.observe(el));
+
+// ── COUNTER ANIMATION ──
+function animateCount(el, target, suffix = '') {
+  let current = 0;
+  const step = Math.ceil(target / 60);
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current + suffix;
+    if (current >= target) clearInterval(timer);
+  }, 24);
+}
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseInt(el.getAttribute('data-count'));
+      const suffix = el.closest('.hstat-num') ? (target === 70 ? '%+' : '+') : '';
+      animateCount(el, target, suffix);
+      counterObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+// ── LANGUAGE ──
+let lang = 'ru';
+function setLang(l) {
+  lang = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`).classList.add('active');
+  document.getElementById('form-lang').value = l;
+  document.querySelectorAll(`[data-${l}]`).forEach(el => {
+    const val = el.getAttribute(`data-${l}`);
+    if (!val) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = val;
+    } else if (el.tagName === 'OPTION') {
+      el.textContent = val;
+    } else {
+      el.innerHTML = val;
+    }
+  });
+}
+
+// ── REGION TABS ──
+function showRegion(id) {
+  document.querySelectorAll('.region-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.rtab').forEach(el => el.classList.remove('active'));
+  document.getElementById('region-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── FORM ──
+function scrollToForm() {
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+}
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('lead-form');
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(new FormData(form)).toString()
+  }).catch(() => {});
+  form.style.display = 'none';
+  document.getElementById('form-success').classList.add('show');
+}
+</script>
+</body>
+</html>
