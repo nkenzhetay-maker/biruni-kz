@@ -2004,15 +2004,27 @@ function scrollToForm() {
 function handleSubmit(e) {
   e.preventDefault();
   const form = document.getElementById('lead-form');
+  const data = new FormData(form);
+  const body = {};
+  data.forEach((v, k) => body[k] = v);
+
+  // Netlify Forms (yedek)
   fetch('/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(new FormData(form)).toString()
+    body: new URLSearchParams(data).toString()
   }).catch(() => {});
+
+  // n8n Webhook (ana otomasyon)
+  fetch('https://biruni-kz.app.n8n.cloud/webhook/biruni-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  }).catch(() => {});
+
   form.style.display = 'none';
   document.getElementById('form-success').classList.add('show');
 }
 </script>
 </body>
 </html>
-
